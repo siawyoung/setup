@@ -6,6 +6,7 @@
 # https://github.com/creationix/nvm
 sudo apt-get install -y git
 sudo apt-get install -y curl
+sudo apt-get install -y npm
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
 # Load nvm and install latest production node
@@ -15,7 +16,7 @@ nvm use v0.10
 
 # Install jshint to allow checking of JS code within vim 
 # http://jshint.com/
-npm install -g jshint
+npm install jshint -g
 
 # Install rlwrap to provide libreadline features with node
 # See: http://nodejs.org/api/repl.html#repl_repl
@@ -40,20 +41,20 @@ ln -sb dotfiles/.bashrc .
 ln -sb dotfiles/.bashrc_custom .
 ln -sf dotfiles/.emacs.d .
 
-# Also creates a dotfile for jshint and vim
-touch dotfiles/.jshintrc
-ln -sb dotfiles/.jshintrc .
-touch dotfiles/.vimrc
-ln -sb dotdiles/.vimrc .
-
+# Also creates dotfiles for jshint and vim
+touch .jshintrc
+touch .vimrc
 
 # Installs pathogen, makes it easier to install vim plugins
-mkdir -p ~/.vim/autoload ~/.vim/bundle
+mkdir -p ~/.vim/autoload
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 # Sets vim config for pathogen, also sets tab width to 4
-echo -e "execute pathogen#infect()\nsyntax on\nfiletype plugin indent on\n:set expandtab tabstop=4 shiftwidth=4" >> .vimrc
+echo -e "execute pathogen#infect()\nsyntax on\nfiletype plugin indent on\n:set expandtab tabstop=4 shiftwidth=4\n:let mapleader=",""  >> .vimrc
 
-# Installs jshint for vim
-cd ~/.vim/bundle/jshint2.vim/
+# Installs jshint and easymotion for vim
+mkdir -p ~/.vim/bundle
+cd ~/.vim/bundle
 git clone https://github.com/Shutnik/jshint2.vim
+git clone https://github.com/Lokaltog/vim-easymotion 
+cd $HOME
