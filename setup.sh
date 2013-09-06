@@ -50,7 +50,7 @@ mkdir -p ~/.vim/autoload
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 # Sets vim config for pathogen, also sets tab width to 4
-echo -e "execute pathogen#infect()\nsyntax on\nfiletype plugin indent on\n:set expandtab tabstop=4 shiftwidth=4\n:let mapleader=",""  >> .vimrc
+echo -e "execute pathogen#infect()\nsyntax on\nfiletype plugin indent on\n:set expandtab tabstop=4 shiftwidth=4\n:let mapleader=','"  >> .vimrc
 
 # Installs jshint and easymotion for vim
 mkdir -p ~/.vim/bundle
