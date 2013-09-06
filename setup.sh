@@ -10,17 +10,10 @@ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
 # Load nvm and install latest production node
 source $HOME/.nvm/nvm.sh
-nvm install v0.10.12
-nvm use v0.10.12
+nvm install v0.10
+nvm use v0.10
 
-# Install node
-sudo apt-get update
-sudo apt-get install -y python-software-properties python g++ make
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install -y nodejs
-
-# Install jshint to allow checking of JS code within emacs
+# Install jshint to allow checking of JS code within vim 
 # http://jshint.com/
 npm install -g jshint
 
@@ -47,6 +40,20 @@ ln -sb dotfiles/.bashrc .
 ln -sb dotfiles/.bashrc_custom .
 ln -sf dotfiles/.emacs.d .
 
-cd $HOME
-touch .vimrc
-echo ":set tabstop=4 shiftwidth=4" >> .vimrc
+# Also creates a dotfile for jshint and vim
+touch dotfiles/.jshintrc
+ln -sb dotfiles/.jshintrc .
+touch dotfiles/.vimrc
+ln -sb dotdiles/.vimrc .
+
+
+# Installs pathogen, makes it easier to install vim plugins
+mkdir -p ~/.vim/autoload ~/.vim/bundle
+curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+
+# Sets vim config for pathogen, also sets tab width to 4
+echo -e "execute pathogen#infect()\nsyntax on\nfiletype plugin indent on\n:set expandtab tabstop=4 shiftwidth=4" >> .vimrc
+
+# Installs jshint for vim
+cd ~/.vim/bundle/jshint2.vim/
+git clone https://github.com/Shutnik/jshint2.vim
