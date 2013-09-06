@@ -49,4 +49,4 @@ ln -sf dotfiles/.emacs.d .
 
 cd $HOME
 touch .vimrc
-echo ":set expandtab tabstop=4 shiftwidth=4" >> .vimrc
+echo ":set tabstop=4 shiftwidth=4" >> .vimrc
